@@ -23,4 +23,4 @@ jobs:
       - name: Run Migrations
         env:
           NUXT_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: bun db:migrate
+        run: bunx prisma migrate deploy
