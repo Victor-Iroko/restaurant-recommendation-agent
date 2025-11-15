@@ -19,7 +19,7 @@
     "db:studio": "dotenv -e .env -- prisma studio",
     "db:seed": "bun run prisma/seed.ts",
     "dev:full": "concurrently -k -n \"APP,DB,STUDIO\" -c \"blue,green,magenta\" \"bun run dev\" \"docker compose up postgres\" \"bun run db:studio\"",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
@@ -52,6 +52,9 @@
     "prisma": "^6.19.0"
   },
   "lint-staged": {
-    "*": "bun lint"
+    "*.{ts,vue,js,json}": [
+      "bun lint",
+      "bun run test:run"
+    ]
   }
 }
