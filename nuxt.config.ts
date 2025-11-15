@@ -10,10 +10,24 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     'nuxt-security',
+    '@nuxtjs/seo',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    gmailUser: '',
+    gmailPass: '',
+  },
   compatibilityDate: '2025-07-15',
+  nitro: {
+    storage: {
+      cache: {
+        driver: 'redis',
+        // eslint-disable-next-line node/prefer-global/process
+        url: process.env.REDIS_URL || 'redis://localhost:6379',
+      },
+    },
+  },
   eslint: {
     config: {
       stylistic: true,
