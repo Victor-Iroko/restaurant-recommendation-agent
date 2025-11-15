@@ -5,6 +5,7 @@ export default defineNuxtRouteMiddleware((to) => {
   const publicRoutes = [
     '/',
     '/register',
+    '/forgot-password',
   ]
 
   // Check if the route the user is navigating to is public
