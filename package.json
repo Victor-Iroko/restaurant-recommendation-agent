@@ -18,10 +18,11 @@
     "db:generate": "dotenv -e .env -- prisma generate",
     "db:studio": "dotenv -e .env -- prisma studio",
     "db:seed": "bun run prisma/seed.ts",
-    "dev:full": "concurrently -k -n \"APP,DB,STUDIO\" -c \"blue,green,magenta\" \"bun run dev\" \"docker compose up postgres\" \"bun run db:studio\"",
+    "dev:full": "concurrently -k -n \"APP,DB,STUDIO,CACHE\" -c \"blue,green,magenta,yellow\" \"bun run dev\" \"docker compose up postgres\" \"bun run db:studio\" \"docker compose up redis\"",
     "prepare": "husky"
   },
   "dependencies": {
+    "@getzep/zep-cloud": "^3.12.0",
     "@nuxt/eslint": "1.10.0",
     "@nuxt/hints": "1.0.0-alpha.1",
     "@nuxt/image": "2.0.0",
@@ -35,6 +36,7 @@
     "nodemailer": "^7.0.10",
     "nuxt": "^4.2.1",
     "nuxt-security": "2.4.0",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "typescript": "^5.6.3",
     "vue": "^3.5.24",
     "vue-router": "^4.6.3",

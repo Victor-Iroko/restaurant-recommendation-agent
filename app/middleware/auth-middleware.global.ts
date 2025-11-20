@@ -2,24 +2,31 @@ export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore()
   const isLoggedIn = !!authStore.user
 
+  // allowed list for non-authenticated users
   const publicRoutes = [
     '/',
     '/register',
     '/forgot-password',
   ]
 
-  // Check if the route the user is navigating to is public
+  // Check if the route the user is navigating to is a public route
   const isPublicRoute = publicRoutes.includes(to.path)
 
-  // If the route is NOT public AND the user is NOT logged in,
-  // redirect them to the login page.
+  // if the person is trying to visit a non-public page and is not logged in
+  // redirect to the login page (which is the home page in this case)
   if (!isPublicRoute && !isLoggedIn) {
-    return navigateTo(`/?redirect_to=${to.fullPath}`)
+    return navigateTo({
+      path: '/',
+      query: {
+        redirectTo: to.path,
+      },
+    })
   }
 
-  // If the user IS logged in and tries to visit a public-only page
-  // (like login or register), redirect them to the main app.
+  // This is a "disallow list" for authenticated (logged in) users.
   const authPages = ['/', '/register']
+
+  // if the user is logged in and trying to access an auth page, redirect to /home
   if (authPages.includes(to.path) && isLoggedIn) {
     return navigateTo('/home')
   }

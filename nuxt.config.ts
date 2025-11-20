@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     'nuxt-security',
@@ -17,11 +18,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     gmailUser: '',
     gmailPass: '',
+    zepApiKey: '',
   },
   compatibilityDate: '2025-07-15',
   nitro: {
     storage: {
-      cache: {
+      redis: {
         driver: 'redis',
         // eslint-disable-next-line node/prefer-global/process
         url: process.env.REDIS_URL || 'redis://localhost:6379',

@@ -9,7 +9,6 @@ const { showError, showSuccess } = useNotify()
 const { providers, callbackURL } = useSocialProviders('Sign up')
 
 async function onSubmit(payload: FormSubmitEvent<RegisterFormData>) {
-  // Use the signUp method from your authClient
   await authClient.signUp.email({
     email: payload.data.email,
     password: payload.data.password,

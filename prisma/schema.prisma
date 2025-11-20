@@ -24,6 +24,10 @@ model User {
   updatedAt     DateTime  @default(now()) @updatedAt
   accounts      Account[]
 
+  onBoarded            Boolean @default(false)
+  onBoardedPreferences Json?
+
+
   @@unique([email])
   @@map("user")
 }

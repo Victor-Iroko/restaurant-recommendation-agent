@@ -22,7 +22,6 @@ async function onSubmit(payload: FormSubmitEvent<ForgotPasswordFormData>) {
       },
       onError: (response) => {
         showError('Password Reset Failed', response.error)
-        emailSent.value = true
       },
     },
   })
@@ -41,15 +40,15 @@ const fields: AuthFormField[] = [
 
 <template>
   <div v-if="emailSent" class="text-center space-y-4">
-    <UIcon name="streamline-pixel:mail-send-letter" class="text-5xl" />
+    <UIcon name="i-material-symbols:mark-email-read-sharp" class="text-5xl" />
     <h2 class="text-2xl font-bold">
       Check your email
     </h2>
-    <p class="text-gray-600 dark:text-gray-300">
+    <p class="text-neutral-600">
       If an account exists for <span class="font-semibold">{{ submittedEmail }}</span>, you will
       receive an email with instructions on how to reset your password.
     </p>
-    <UButton to="/login" label="Back to Login" variant="link" />
+    <UButton to="/" label="Back to Login" variant="link" />
   </div>
 
   <UAuthForm
@@ -57,9 +56,8 @@ const fields: AuthFormField[] = [
     :schema="forgotPasswordSchema"
     title="Forgot Password?"
     description="Enter your email to get a reset link."
-    icon="streamline-pixel:lock-reset"
+    icon="i-solar:lock-password-bold"
     :fields="fields"
-    :providers="[]"
     submit-label="Send Reset Link"
     @submit="onSubmit"
   >

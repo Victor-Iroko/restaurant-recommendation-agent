@@ -1,15 +1,17 @@
-// You can pass 'Sign in' or 'Sign up' to customize the label
+import type { AuthFormProps } from '@nuxt/ui'
+
 export function useSocialProviders(action: 'Sign in' | 'Sign up' = 'Sign in') {
   const route = useRoute()
+  // to redirect to the intended page after auth
   const callbackURL = computed(() => route.query.redirectTo?.toString() ?? '/home')
 
   const providers = computed(() => [
     {
-      name: 'google',
       label: `${action} with Google`,
       icon: 'mdi:google',
+      color: 'primary',
+      variant: 'outline',
       onClick: () => {
-        // Assumes authClient and getCsrfHeaders are auto-imported or globally available
         authClient.signIn.social({
           provider: 'google',
           fetchOptions: { headers: getCsrfHeaders() },
@@ -17,7 +19,7 @@ export function useSocialProviders(action: 'Sign in' | 'Sign up' = 'Sign in') {
         })
       },
     },
-  ])
+  ] satisfies AuthFormProps['providers'])
 
   return {
     providers,

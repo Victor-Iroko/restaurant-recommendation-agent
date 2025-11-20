@@ -51,11 +51,11 @@ const fields: AuthFormField[] = [
 
 <template>
   <div v-if="!token" class="text-center space-y-4">
-    <UIcon name="streamline-pixel:link-broken" class="text-5xl text-red-500" />
-    <h2 class="text-2xl font-bold">
+    <UIcon name="i-solar:link-broken-minimalistic-bold" class="text-5xl text-error" />
+    <h2 class="text-2xl font-bold text-error">
       Invalid Link
     </h2>
-    <p class="text-gray-600 dark:text-gray-300">
+    <p class="text-neutral-600">
       This password reset link is invalid or has expired. Please return to the
       'Forgot Password' page to request a new link.
     </p>
@@ -67,7 +67,7 @@ const fields: AuthFormField[] = [
     :schema="resetPasswordSchema"
     title="Set Your New Password"
     description="Enter and confirm your new password below."
-    icon="streamline-pixel:lock-shield"
+    icon="i-material-symbols:lock-outline"
     :fields="fields"
     :providers="[]"
     submit-label="Reset Password"

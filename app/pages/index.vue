@@ -58,10 +58,10 @@ const fields: AuthFormField[] = [
   >
     <template #footer>
       <div class="flex justify-between">
-        <ULink to="/forgot-password" class="text-primary-700">
+        <ULink to="/forgot-password" class="text-primary">
           Forgot Password?
         </ULink>
-        <ULink to="/register" class="text-primary-700">
+        <ULink to="/register" class="text-primary">
           Don't have an account? Signup
         </ULink>
       </div>

@@ -1,11 +1,22 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
+import { openAPI } from 'better-auth/plugins'
 import { prisma } from '~~/server/utils/prisma'
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
+  user: {
+    additionalFields: {
+      onBoarded: {
+        type: 'boolean',
+        required: true,
+        default: false,
+        input: true,
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
@@ -26,13 +37,16 @@ export const auth = betterAuth({
   },
   secondaryStorage: {
     get: async (key) => {
-      return await useStorage('cache').getItem<string>(key)
+      return await useStorage('redis').getItem<string>(key)
     },
     set: async (key, value, ttl) => {
-      await useStorage('cache').setItem(key, value, { maxAge: ttl })
+      await useStorage('redis').setItem(key, value, { ttl })
     },
     delete: async (key) => {
-      await useStorage('cache').removeItem(key)
+      await useStorage('redis').removeItem(key)
     },
   },
+  plugins: [
+    openAPI(),
+  ],
 })

@@ -3,11 +3,11 @@
 </script>
 
 <template>
-  <div class="bg-[url(/restaurant_background.jpg)] bg-cover bg-center min-h-screen flex items-center justify-center p-4">
+  <div class="bg-[url(/restaurant_background.png)] bg-cover bg-center min-h-screen flex items-center justify-center p-4">
     <UPageCard
       class="w-full max-w-md backdrop-blur-sm"
       :ui="{
-        root: 'bg-white/75 dark:bg-gray-900/75',
+        root: 'bg-[#f8f6f6]/75 dark:bg-[#221510]/75',
       }"
     >
       <slot />
